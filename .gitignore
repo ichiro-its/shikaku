@@ -8,3 +8,6 @@ log
 
 __pycache__
 *.pyc
+
+urdf/robot.urdf
+urdf/field.urdf
