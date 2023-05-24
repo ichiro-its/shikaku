@@ -53,34 +53,31 @@ const char joint_id[20][22] = {
 namespace shikaku
 {
 
-PybulletPublisher::PybulletPublisher() : Node("pybullet_publisher")
+PybulletPublisher::PybulletPublisher(rclcpp::Node::SharedPtr node) : node(node)
 {
-  joint_state = this->create_publisher<sensor_msgs::msg::JointState>("joint_states", 10);
-
-  sensor_msgs::msg::JointState joint_state_msg;
-  joint_state_msg.header.stamp = this->now();
+  joint_state = node->create_publisher<sensor_msgs::msg::JointState>("joint_states", 10);
+  joint_state_msg.header.stamp = node->now();
 
   for (int i = 0; i < 20; i++) {
-    registerJoint(joint_state_msg, joint_id[i], 0.0);
+    registerJoint(joint_id[i], 0.0);
   }
 
-  rclcpp::Rate rcl_rate(8ms);
+  current_joints_subscriber = node->create_subscription<CurrentJoints>(
+    "/joint/current_joints", 10, [this](const CurrentJoints::SharedPtr message) {
+      {
+        for (const auto & joint : message->joints) {
+          std::cout << "ID: " << joint.id << "POSITION: " << joint.position << "\n";
+          joint_state_msg.position[joint.id - 1] += joint.position;
+        }
+      }
+    });
 
-  while (rclcpp::ok()) {
-    joint_state_msg.position[0] = 3.14;
-    joint_state_msg.position[1] = 3.14;
-    joint_state_msg.position[2] = -1.57;
-
-    joint_state->publish(joint_state_msg);
-
-    rcl_rate.sleep();
-  }
+  joint_state->publish(joint_state_msg);
 }
 
-void PybulletPublisher::registerJoint(
-  sensor_msgs::msg::JointState & joint_state_msg, const std::string & name, const double & pos)
+void PybulletPublisher::registerJoint(const std::string & joint_name, const double & pos)
 {
-  joint_state_msg.name.push_back(name);
+  joint_state_msg.name.push_back(joint_name);
   joint_state_msg.position.push_back(pos);
 }
 

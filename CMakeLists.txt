@@ -21,6 +21,7 @@ find_package(ament_cmake_python REQUIRED)
 find_package(rclcpp REQUIRED)
 find_package(rclpy REQUIRED)
 find_package(sensor_msgs REQUIRED)
+find_package(tachimawari_interfaces REQUIRED)
 
 # Include directories
 include_directories(include)
@@ -31,7 +32,8 @@ add_executable(pybullet_publisher
   src/pybullet_publisher_main.cpp)
 ament_target_dependencies(pybullet_publisher 
   rclcpp
-  sensor_msgs)
+  sensor_msgs
+  tachimawari_interfaces)
 target_link_libraries(pybullet_publisher ${DEPENDENCIES})
 
 # Install C++ executables
@@ -40,6 +42,10 @@ install(TARGETS
   DESTINATION lib/${PROJECT_NAME}
 )
 
+ament_export_dependencies(
+  rclcpp
+  sensor_msgs
+  tachimawari_interfaces)
 # Install Python modules
 ament_python_install_package(${PROJECT_NAME})
 

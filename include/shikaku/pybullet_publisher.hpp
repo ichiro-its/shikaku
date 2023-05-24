@@ -26,20 +26,24 @@
 
 #include "rclcpp/rclcpp.hpp"
 #include "sensor_msgs/msg/joint_state.hpp"
+#include "tachimawari_interfaces/msg/current_joints.hpp"
 
 namespace shikaku
 {
 
-class PybulletPublisher : public rclcpp::Node
+class PybulletPublisher
 {
 public:
-  PybulletPublisher();
+  using CurrentJoints = tachimawari_interfaces::msg::CurrentJoints;
+  explicit PybulletPublisher(rclcpp::Node::SharedPtr node);
 
 private:
-  void registerJoint(
-    sensor_msgs::msg::JointState & joint_state_msg, const std::string & name, const double & pos);
-  rclcpp::Publisher<sensor_msgs::msg::JointState>::SharedPtr joint_state;
   rclcpp::Node::SharedPtr node;
+  sensor_msgs::msg::JointState joint_state_msg;
+  rclcpp::Publisher<sensor_msgs::msg::JointState>::SharedPtr joint_state;
+  rclcpp::Subscription<CurrentJoints>::SharedPtr current_joints_subscriber;
+  void registerJoint(const std::string & joint_name, const double & pos);
+  void updateCurrentJoints(rclcpp::Node::SharedPtr node);
 };
 
 }  // namespace shikaku
