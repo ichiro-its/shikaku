@@ -65,16 +65,17 @@ PybulletPublisher::PybulletPublisher(rclcpp::Node::SharedPtr node) : node(node)
   current_joints_subscriber = node->create_subscription<CurrentJoints>(
     "/joint/current_joints", 10, [this](const CurrentJoints::SharedPtr message) {
       {
+        int id = 0;
         for (const auto & joint : message->joints) {
-          std::cout << "ID: " << joint.id << "POSITION: " << joint.position << "\n";
-          joint_state_msg.position[joint.id - 1] += joint.position;
+          std::cout << "ID: " << id << " POSITION: " << joint.position << "\n";
+          joint_state_msg.position[id++] = degree2Rad(joint.position);
         }
+        joint_state->publish(joint_state_msg);
       }
     });
-
-  joint_state->publish(joint_state_msg);
 }
 
+float PybulletPublisher::degree2Rad(float degree) { return degree / 180.0; }
 void PybulletPublisher::registerJoint(const std::string & joint_name, const double & pos)
 {
   joint_state_msg.name.push_back(joint_name);

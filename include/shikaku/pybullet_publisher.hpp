@@ -42,8 +42,8 @@ private:
   sensor_msgs::msg::JointState joint_state_msg;
   rclcpp::Publisher<sensor_msgs::msg::JointState>::SharedPtr joint_state;
   rclcpp::Subscription<CurrentJoints>::SharedPtr current_joints_subscriber;
+  float degree2Rad(float degree);
   void registerJoint(const std::string & joint_name, const double & pos);
-  void updateCurrentJoints(rclcpp::Node::SharedPtr node);
 };
 
 }  // namespace shikaku
