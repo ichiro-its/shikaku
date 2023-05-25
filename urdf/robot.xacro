@@ -70,7 +70,7 @@
       <origin rpy="0 0 1.57079632679" xyz="0 0 0"/>
     </collision>
   </link>
-  <joint name="L_SHO_PITCH" type="continuous"> <!-- JOINT_ID = 2 -->
+  <joint name="L_SHO_PITCH" type="fixed"> <!-- JOINT_ID = 2 -->
     <axis xyz="0 1 0"/>
     <parent link="body"/>
     <child link="left_shoulder_horizontal"/>
@@ -98,22 +98,23 @@
       <geometry>
         <box size="${scale * 0.0402} ${scale * 0.038} ${scale * 0.156}"/>
       </geometry>
-      <origin rpy="0 0 1.57079632679" xyz="0 0 0"/> 
+      <origin rpy="0 0 1.57079632679" xyz="0 0 ${scale * -0.078}"/> 
       <material name="cyan"/>
     </visual>
     <collision>
       <geometry>
         <box size="${scale * 0.0402} ${scale * 0.038} ${scale * 0.156}"/>
       </geometry>
-      <origin rpy="0 0 1.57079632679" xyz="0 0 0"/>
+      <origin rpy="0 0 1.57079632679" xyz="0 0 ${scale * -0.078}"/>
     </collision>
   </link>
   <!-- TODO: Type should be revolute -->
-  <joint name="R_SHO_ROLL" type="continuous"> <!-- JOINT_ID = 3 -->
-    <axis xyz="1 0 0"/>
+  <joint name="R_SHO_ROLL" type="fixed"> <!-- JOINT_ID = 3 -->
+    <limit effort="1000.0" lower="0.0" upper="3.14159265359"/>
+    <axis xyz="-1 0 0"/>
     <parent link="right_shoulder_vertical"/>
     <child link="right_arm"/>
-    <origin xyz="0 0 ${scale * -0.084}"/>
+    <origin xyz="0 0 ${scale * -0.006}"/>
   </joint>
 
   <link name="left_shoulder_vertical">
@@ -137,21 +138,23 @@
       <geometry>
         <box size="${scale * 0.0402} ${scale * 0.038} ${scale * 0.156}"/>
       </geometry>
-      <origin rpy="0 0 1.57079632679" xyz="0 0 0"/>
+      <origin rpy="0 0 1.57079632679" xyz="0 0 ${scale * -0.078}"/>
       <material name="cyan"/>
     </visual>
     <collision>
       <geometry>
         <box size="${scale * 0.0402} ${scale * 0.038} ${scale * 0.156}"/>
       </geometry>
-      <origin rpy="0 0 1.57079632679" xyz="0 0 0"/>
+      <origin rpy="0 0 1.57079632679" xyz="0 0 ${scale * -0.078}"/>
     </collision>
   </link>
   <!-- TODO: Type should be revolute -->
   <joint name="L_SHO_ROLL" type="fixed"> <!-- JOINT_ID = 4 -->
+    <axis xyz="1 0 0"/>
+    <limit effort="1000.0" lower="0.0" upper="3.14159265359"/>
     <parent link="left_shoulder_vertical"/>
     <child link="left_arm"/>
-    <origin xyz="0 0 ${scale * -0.084}"/>
+    <origin xyz="0 0 ${scale * -0.006}"/>
   </joint>
 
   <link name="right_hand">
@@ -169,7 +172,7 @@
       <origin rpy="0 0 1.57079632679" xyz="0 0 ${scale * -0.081}"/>
     </collision>
   </link>
-  <joint name="R_ELBOW" type="revolute"> <!-- JOINT_ID = 5 -->
+  <joint name="R_ELBOW" type="fixed"> <!-- JOINT_ID = 5 -->
     <axis xyz="0 1 0"/>
     <limit effort="1000.0" lower="-2.35619" upper="2.35619" velocity="0.5"/>
     <parent link="right_arm"/>
@@ -192,7 +195,7 @@
       <origin rpy="0 0 1.57079632679" xyz="0 0 ${scale * -0.081}"/>
     </collision>
   </link>
-  <joint name="L_ELBOW" type="revolute"> <!-- JOINT_ID = 6 -->
+  <joint name="L_ELBOW" type="fixed"> <!-- JOINT_ID = 6 -->
     <axis xyz="0 1 0"/>
     <limit effort="1000.0" lower="-2.35619" upper="2.35619" velocity="0.5"/>
     <parent link="left_arm"/>
