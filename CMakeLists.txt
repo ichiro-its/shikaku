@@ -27,18 +27,18 @@ find_package(tachimawari_interfaces REQUIRED)
 include_directories(include)
 
 # Create C++ executables
-add_executable(pybullet_publisher
-  src/shikaku/pybullet_publisher.cpp
-  src/pybullet_publisher_main.cpp)
-ament_target_dependencies(pybullet_publisher 
+add_executable(data_processor
+  src/shikaku/data_processor.cpp
+  src/data_processor_main.cpp)
+ament_target_dependencies(data_processor 
   rclcpp
   sensor_msgs
   tachimawari_interfaces)
-target_link_libraries(pybullet_publisher ${DEPENDENCIES})
+target_link_libraries(data_processor ${DEPENDENCIES})
 
 # Install C++ executables
 install(TARGETS
-  pybullet_publisher
+  data_processor
   DESTINATION lib/${PROJECT_NAME}
 )
 
@@ -51,7 +51,7 @@ ament_python_install_package(${PROJECT_NAME})
 
 # Install Python executables
 install(PROGRAMS
-  scripts/pybullet_subscriber_main.py
+  scripts/crpybullet_visualizer_main.py
   DESTINATION lib/${PROJECT_NAME}
 )
 

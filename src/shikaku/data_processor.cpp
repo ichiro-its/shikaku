@@ -18,7 +18,7 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-#include "shikaku/pybullet_publisher.hpp"
+#include "shikaku/data_processor.hpp"
 
 #include <chrono>
 #include <memory>

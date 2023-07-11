@@ -18,8 +18,8 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-#ifndef SHIKAKU__NODE_PYBULLET_PUBLISHER_HPP_
-#define SHIKAKU__NODE_PYBULLET_PUBLISHER_HPP_
+#ifndef SHIKAKU__NODE_DATA_PROCESSOR_HPP_
+#define SHIKAKU__NODE_DATA_PROCESSOR_HPP_
 
 #include <memory>
 #include <string>
@@ -31,11 +31,11 @@
 namespace shikaku
 {
 
-class PybulletPublisher
+class DataProcessor
 {
 public:
   using CurrentJoints = tachimawari_interfaces::msg::CurrentJoints;
-  explicit PybulletPublisher(rclcpp::Node::SharedPtr node);
+  explicit DataProcessor(rclcpp::Node::SharedPtr node);
 
 private:
   rclcpp::Node::SharedPtr node;

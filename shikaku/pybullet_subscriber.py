@@ -29,9 +29,9 @@ from sensor_msgs.msg import JointState
 import time
 
 
-class PybulletSubscriber(Node):
+class PybulletVisualizer(Node):
     def __init__(self):
-        super().__init__('pybullet_subscriber')
+        super().__init__('pybullet_visualizer')
 
         self.get_logger().info("Subscribing to joint states...")
 
@@ -93,7 +93,7 @@ def runPybulletVisualization(args=None):
     rclpy.init(args=args)
 
     try:
-        node = PybulletSubscriber()
+        node = PybulletVisualizer()
         rclpy.spin(node)
     except rclpy.exceptions.ROSInterruptException:
         pass
