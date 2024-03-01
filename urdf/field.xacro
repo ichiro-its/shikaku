@@ -49,6 +49,12 @@
       <origin xyz="0 0 ${scale * 0.005}"/>
       <material name="white"/>
     </visual>
+    <collision>
+      <geometry>
+        <cylinder length="${scale * 0.001}" radius ="${scale * 0.75}"/>
+      </geometry>
+      <origin xyz="0 0 ${scale * 0.005}"/>
+    </collision>
   </link>
   <joint name="base_with_kickoff_line" type="fixed">
     <parent link="base"/>
@@ -63,6 +69,12 @@
       <origin xyz="0 0 ${scale * 0.009}"/>
       <material name="white"/>
     </visual>
+    <collision>
+      <geometry>
+        <cylinder length="${scale * 0.001}" radius ="${scale * 0.075}"/>
+      </geometry>
+      <origin xyz="0 0 ${scale * 0.009}"/>
+    </collision>
   </link>
   <joint name="base_with_kickoff_spot" type="fixed">
     <parent link="base"/>
@@ -77,6 +89,12 @@
       <origin xyz ="0 0 ${scale * 0.007}"/>
       <material name="green"/>
     </visual>
+    <collision>
+      <geometry>
+        <cylinder length="${scale * 0.001}" radius ="${scale * 0.67}"/>
+      </geometry>
+      <origin xyz ="0 0 ${scale * 0.007}"/>
+    </collision>
   </link>
   <joint name="base_with_kickoff_area" type="fixed">
     <parent link="base"/>
@@ -91,6 +109,12 @@
       <origin xyz="0 0 ${scale * 0.009}"/>
       <material name="white"/>
     </visual>
+    <collision>
+      <geometry>
+        <box size="${scale * 0.08} ${scale * 6} ${scale * 0.001}"/>
+      </geometry>
+      <origin xyz="0 0 ${scale * 0.009}"/>
+    </collision>
   </link>
   <joint name="base_with_middle_line" type="fixed">
     <parent link="base"/>
@@ -106,6 +130,12 @@
       <origin xyz="0 0 {scale * 0.001}"/>
       <material name="white"/>
     </visual>
+    <collision>
+      <geometry>
+        <box size="${scale * 9} ${scale * 6} ${scale * 0.001}"/>
+      </geometry>
+      <origin xyz="0 0 {scale * 0.001}"/>
+    </collision>
   </link>
   <joint name="base_with_outer_line" type="fixed">
     <parent link="base"/>
@@ -121,6 +151,12 @@
       <origin xyz="0 0 ${scale * 0.003}"/>
       <material name="green"/>
     </visual>
+    <collision>
+     <geometry>
+        <box size="${scale * 8.84} ${scale * 5.84} ${scale * 0.001}"/>
+      </geometry>
+      <origin xyz="0 0 ${scale * 0.003}"/>
+    </collision>
   </link>
   <joint name="base_with_inner_field" type="fixed">
     <parent link="base"/>
@@ -136,6 +172,12 @@
       <origin xyz="${scale * -4.8} 0 ${scale * 0.001}"/>
       <material name="white"/>
     </visual>
+    <collision>
+      <geometry>
+        <box size="${scale * 0.6} ${scale * 2.74} ${scale * 0.001}"/>
+      </geometry>
+      <origin xyz="${scale * -4.8} 0 ${scale * 0.001}"/>
+    </collision>
   </link>
   <joint name="base_with_goal_box_1" type="fixed">
     <parent link="base"/>
@@ -151,6 +193,12 @@
       <origin xyz="${scale * -4.76} 0 ${scale * 0.003}"/>
       <material name="green"/>
     </visual>
+    <collision>
+      <geometry>
+        <box size="${scale * 0.52} ${scale * 2.6} ${scale * 0.001}"/>
+      </geometry>
+      <origin xyz="${scale * -4.76} 0 ${scale * 0.003}"/>
+    </collision>
   </link>
   <joint name="base_with_goal_area_1" type="fixed">
     <parent link="base"/>
@@ -166,6 +214,12 @@
       <origin xyz="${scale * 4.8} 0 ${scale * 0.001}"/>
       <material name="white"/>
     </visual>
+    <collision>
+      <geometry>
+        <box size="${scale * 0.6} ${scale * 2.74} ${scale * 0.001}"/>
+      </geometry>
+      <origin xyz="${scale * 4.8} 0 ${scale * 0.001}"/>
+    </collision>
   </link>
   <joint name="base_with_goal_box_2" type="fixed">
     <parent link="base"/>
@@ -181,6 +235,12 @@
       <origin xyz="${scale * 4.76} 0 ${scale * 0.003}"/>
       <material name="green"/>
     </visual>
+    <collision>
+      <geometry>
+        <box size="${scale * 0.52} ${scale * 2.6} ${scale * 0.001}"/>
+      </geometry>
+      <origin xyz="${scale * 4.76} 0 ${scale * 0.003}"/>
+    </collision>
   </link>
   <joint name="base_with_goal_area_2" type="fixed">
     <parent link="base"/>
@@ -195,6 +255,12 @@
       <origin xyz="${scale * -4} 0 ${scale * 0.005}"/>
       <material name="white"/>
     </visual>
+    <collision>
+      <geometry>
+        <box size="${scale * 1} ${scale * 5} ${scale * 0.001}"/>
+      </geometry>
+      <origin xyz="${scale * -4} 0 ${scale * 0.005}"/>
+    </collision>
   </link>
   <joint name="base_with_penalty_box_1" type="fixed">
     <parent link="base"/>
@@ -210,6 +276,12 @@
       <origin xyz="${scale * -4} 0 ${scale * 0.007}"/>
       <material name="green"/>
     </visual>
+    <collision>
+       <geometry>
+        <box size="${scale * 0.84} ${scale * 4.84} ${scale * 0.001}"/>
+      </geometry>
+      <origin xyz="${scale * -4} 0 ${scale * 0.007}"/>
+    </collision>
   </link>
   <joint name="base_with_penalty_area_1" type="fixed">
     <parent link="base"/>
@@ -225,6 +297,12 @@
       <origin xyz="${scale * 4} 0 ${scale * 0.005}"/>
       <material name="white"/>
     </visual>
+    <collision>
+       <geometry>
+        <box size="${scale * 1} ${scale * 5} ${scale * 0.001}"/>
+      </geometry>
+      <origin xyz="${scale * 4} 0 ${scale * 0.005}"/>
+    </collision>
   </link>
   <joint name="base_with_penalty_box_2" type="fixed">
     <parent link="base"/>
@@ -240,6 +318,12 @@
       <origin xyz="${scale * 4} 0 ${scale * 0.007}"/>
       <material name="green"/>
     </visual>
+    <collision>
+      <geometry>
+        <box size="${scale * 0.84} ${scale * 4.84} ${scale * 0.001}"/>
+      </geometry>
+      <origin xyz="${scale * 4} 0 ${scale * 0.007}"/>
+    </collision>
   </link>
   <joint name="base_with_penalty_area_2" type="fixed">
     <parent link="base"/>
@@ -255,6 +339,12 @@
       <origin xyz="${scale  * -2.4} 0 ${scale * 0.005}"/>
       <material name="white"/>
     </visual>
+    <collision>
+      <geometry>
+        <cylinder length ="${scale * 0.001}" radius="${scale * 0.075}"/>
+      </geometry>
+      <origin xyz="${scale  * -2.4} 0 ${scale * 0.005}"/>
+    </collision>
   </link>
   <joint name="base_with_penalty_mark_1" type="fixed">
     <parent link="base"/>
@@ -270,6 +360,12 @@
       <origin xyz="${scale * 2.4} 0 ${scale * 0.005}"/>
       <material name="white"/>
     </visual>
+    <collision>
+      <geometry>
+        <cylinder length ="${scale * 0.001}" radius="${scale * 0.075}"/>
+      </geometry>
+      <origin xyz="${scale * 2.4} 0 ${scale * 0.005}"/>
+    </collision>
   </link>
   <joint name="base_with_penalty_mark_2" type="fixed">
     <parent link="base"/>

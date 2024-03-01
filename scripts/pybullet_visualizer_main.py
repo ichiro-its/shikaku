@@ -21,7 +21,7 @@
 # THE SOFTWARE.
 
 import rclpy
-from shikaku.pybullet_visualizer import runPybulletVisualization
+from shikaku.pybullet_subscriber import runPybulletVisualization
 
 
 def main(args=None):

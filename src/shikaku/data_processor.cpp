@@ -21,6 +21,7 @@
 #include "shikaku/data_processor.hpp"
 
 #include <chrono>
+#include <iostream>
 #include <memory>
 #include <string>
 #include <vector>
@@ -53,7 +54,7 @@ const char joint_id[20][22] = {
 namespace shikaku
 {
 
-PybulletPublisher::PybulletPublisher(rclcpp::Node::SharedPtr node) : node(node)
+DataProcessor::DataProcessor(rclcpp::Node::SharedPtr node) : node(node)
 {
   joint_state = node->create_publisher<sensor_msgs::msg::JointState>("joint_states", 10);
   joint_state_msg.header.stamp = node->now();
@@ -61,7 +62,7 @@ PybulletPublisher::PybulletPublisher(rclcpp::Node::SharedPtr node) : node(node)
   for (int i = 0; i < 20; i++) {
     registerJoint(joint_id[i], 0.0);
   }
-
+  std::cout << "Start Data Processor" << std::endl;
   current_joints_subscriber = node->create_subscription<CurrentJoints>(
     "/joint/current_joints", 10, [this](const CurrentJoints::SharedPtr message) {
       {
@@ -75,8 +76,8 @@ PybulletPublisher::PybulletPublisher(rclcpp::Node::SharedPtr node) : node(node)
     });
 }
 
-float PybulletPublisher::degree2Rad(float degree) { return degree / 180.0; }
-void PybulletPublisher::registerJoint(const std::string & joint_name, const double & pos)
+float DataProcessor::degree2Rad(float degree) { return degree / 180.0; }
+void DataProcessor::registerJoint(const std::string & joint_name, const double & pos)
 {
   joint_state_msg.name.push_back(joint_name);
   joint_state_msg.position.push_back(pos);

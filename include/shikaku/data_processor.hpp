@@ -34,8 +34,8 @@ namespace shikaku
 class DataProcessor
 {
 public:
+  DataProcessor(rclcpp::Node::SharedPtr node);
   using CurrentJoints = tachimawari_interfaces::msg::CurrentJoints;
-  explicit DataProcessor(rclcpp::Node::SharedPtr node);
 
 private:
   rclcpp::Node::SharedPtr node;

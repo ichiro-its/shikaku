@@ -51,7 +51,7 @@ ament_python_install_package(${PROJECT_NAME})
 
 # Install Python executables
 install(PROGRAMS
-  scripts/crpybullet_visualizer_main.py
+  scripts/pybullet_visualizer_main.py
   DESTINATION lib/${PROJECT_NAME}
 )
 

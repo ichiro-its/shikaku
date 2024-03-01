@@ -49,19 +49,26 @@ class PybulletVisualizer(Node):
         cid = p.connect(p.SHARED_MEMORY)
         if (cid < 0):
             p.connect(p.GUI)
+
         p.setAdditionalSearchPath(pybullet_data.getDataPath())
         p.setGravity(0, 0, -9.8)
+        p.setRealTimeSimulation(1)
 
         # Load URDFs
-        startPosition = [0, 0, 2]
+        startPosition = [0,0, 0.8]
         startOrientation = p.getQuaternionFromEuler([0, 0, 0])
         self.fieldID = p.loadURDF("/src/shikaku/urdf/field.urdf")
         self.robotID = p.loadURDF(
             "/src/shikaku/urdf/robot.urdf", startPosition, startOrientation)
+        
 
+        # Set array of Pybullet joint index
+        self.JointPID = [0, 4, 2, 6, 3, 7, 9, 15, 8, 14, 10, 16, 11, 17, 12, 18, 13, 19, 20, 22]
         # Get joint information in URDF
         self.numJoints = p.getNumJoints(self.robotID)
         for joint in range(self.numJoints):
+            # Set joint force to 1000
+            p.setJointMotorControl2(self.robotID, joint, p.POSITION_CONTROL, targetPosition=0, force=1000)
             self.jointNames.append(p.getJointInfo(
                 self.robotID, joint)[1].decode('UTF-8'))
 
@@ -80,7 +87,7 @@ class PybulletVisualizer(Node):
             self.get_logger().info("Visualizing joint data...")
             for i in range(len(self.jointNames)):
                 p.setJointMotorControl2(
-                    self.robotID, self.jointID[i], p.POSITION_CONTROL, targetPosition=self.jointAngles[i])
+                    self.robotID, self.JointPID[i], p.POSITION_CONTROL, targetPosition=self.jointAngles[i])
 
             p.stepSimulation()
             time.sleep(0.01)
