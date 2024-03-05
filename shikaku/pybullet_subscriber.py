@@ -37,8 +37,8 @@ class PybulletVisualizer(Node):
 
         self.subscripton = self.create_subscription(
             JointState, 'joint_states', self.updateJointData, 10)
-        self.jointAngles = [0.0] * 20
-        self.jointID = [0] * 20
+        self.jointAngles = [0.0] * 22
+        self.jointID = [0] * 22
         self.jointNames = []
         self.initPybullet()
 
@@ -63,7 +63,7 @@ class PybulletVisualizer(Node):
         
 
         # Set array of Pybullet joint index
-        self.JointPID = [0, 4, 2, 6, 3, 7, 9, 15, 8, 14, 10, 16, 11, 17, 12, 18, 13, 19, 20, 22]
+        self.JointPID = [0, 4, 2, 6, 3, 7, 9, 15, 8, 14, 10, 16, 11, 17, 12, 18, 13, 19, 20, 21]
         # Get joint information in URDF
         self.numJoints = p.getNumJoints(self.robotID)
         for joint in range(self.numJoints):
@@ -86,8 +86,9 @@ class PybulletVisualizer(Node):
             # Visualize joint data in pybullet
             self.get_logger().info("Visualizing joint data...")
             for i in range(len(self.jointNames)):
+                print("Joint index = ", i)
                 p.setJointMotorControl2(
-                    self.robotID, self.JointPID[i], p.POSITION_CONTROL, targetPosition=self.jointAngles[i])
+                    self.robotID, self.JointPID[i], p.POSITION_CONTROL, targetPosition=self.jointAngles[i], force = 1000)
 
             p.stepSimulation()
             time.sleep(0.01)
