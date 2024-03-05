@@ -190,12 +190,6 @@
       <inertia ixx="0.00019196166666666668" ixy="0" ixz="0" iyy="0.00018003840000000001" iyz="0" izz="2.2080066666666672e-05"/>
     </inertial>
   </link>
-  <link name="head_tilt">
-    <inertial>
-      <mass value="0"/>
-      <inertia ixx="0" ixy="0" ixz="0" iyy="0" iyz="0" izz="0"/>
-    </inertial>
-  </link>
   <link name="right_hip">
     <inertial>
       <mass value="0"/>
@@ -208,7 +202,7 @@
       <inertia ixx="0" ixy="0" ixz="0" iyy="0" iyz="0" izz="0"/>
     </inertial>
   </link>
-  <!-- HIP TEST WITH UPPER LEG EMPTY LINK -->
+  <!-- HIP TEST WITH EMPTY LINK -->
   <!-- <xacro:property name="hip_tall" value="0.162"/>
   <xacro:property name="hip_mass" value="0.120"/>
   <link name="right_hip">
@@ -373,7 +367,6 @@
       <inertia ixx="0.0005712499999999998" ixy="0" ixz="0" iyy="0.0005712499999999998" iyz="0" izz="0.00012005000000000002"/>
     </inertial>
   </link>
-  <!--foot Z origin is not correctly set (for test)-->
   <link name="left_foot">
     <visual>
       <origin rpy="0 0 0" xyz="0 0 -0.00155"/>
@@ -492,9 +485,10 @@
       <inertia ixx="4.7870833333333336e-05" ixy="0" ixz="0" iyy="1.4270833333333334e-05" iyz="0" izz="3.693333333333333e-05"/>
     </inertial>
   </link>
-  <!--JOINT-->
+  <!-- Axis and limit might need changes -->
+  <!-- JOINT -->
   <joint name="R_SHO_PITCH" type="revolute">
-    <!-- JOINT_ID = 1 -->
+    <!-- JOINT_ID = 1, Pybullet = 0-->
     <axis xyz="0 -1 0"/>
     <parent link="body"/>
     <child link="right_shoulder_horizontal"/>
@@ -502,7 +496,7 @@
     <limit effort="1000.0" lower="-3.141592653589793" upper="3.141592653589793" velocity="0.5"/>
   </joint>
   <joint name="L_SHO_PITCH" type="revolute">
-    <!-- JOINT_ID = 2 -->
+    <!-- JOINT_ID = 2, Pybullet = 4 -->
     <axis xyz="0 -1 0"/>
     <parent link="body"/>
     <child link="left_shoulder_horizontal"/>
@@ -510,7 +504,7 @@
     <limit effort="1000.0" lower="-3.141592653589793" upper="3.141592653589793" velocity="0.5"/>
   </joint>
   <joint name="R_SHO_ROLL" type="revolute">
-    <!-- JOINT_ID = 3 -->
+    <!-- JOINT_ID = 3, Pybullet = 1 -->
     <limit effort="1000.0" lower="0.0" upper="1.5707963267948966" velocity="0.5"/>
     <axis xyz="-1 0 0"/>
     <parent link="right_shoulder_vertical"/>
@@ -648,10 +642,10 @@
   </joint>
   <joint name="HEAD_TILT" type="revolute">
     <!-- JOINT_ID = 20 -->
-    <parent link="head_tilt"/>
+    <parent link="neck"/>
     <child link="head"/>
     <axis xyz="0 1 0"/>
-    <origin xyz="0 0 0"/>
+    <origin xyz="0.0155 0 0"/>
     <limit effort="1000.0" lower="-1.2566370614359172" upper="1.2566370614359172" velocity="0.5"/>
   </joint>
   <!--Fixed Joint-->
@@ -665,10 +659,4 @@
     <child link="left_shoulder_vertical"/>
     <origin xyz="0 0.0275 -0.015"/>
   </joint>
-  <joint name="NECK_TO_HEAD" type="fixed">
-    <parent link="neck"/>
-    <child link="head_tilt"/>
-    <origin xyz="0.0155 0 0"/>
-  </joint>
 </robot>
-
